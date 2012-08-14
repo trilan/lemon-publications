@@ -1,0 +1,8 @@
+include LICENSE
+include README.rst
+
+recursive-include metadata/locale *
+
+include tox.ini
+include tests/runtests.sh
+recursive-include tests *.py
