@@ -12,7 +12,7 @@ setup(
     name='lemon-publications',
     version='0.1.dev',
     license='ISC',
-    description='Utils to create publications-like apps faster.',
+    description='Utils to create publications-like Django apps faster.',
     long_description=read('README.rst'),
     url='https://github.com/trilan/lemon-publications',
     author='Mike Yumatov',

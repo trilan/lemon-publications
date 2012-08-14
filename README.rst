@@ -1,5 +1,5 @@
 Lemon Publications
 ==================
 
-``lemon-publications`` are some utils to create publications-like apps (news,
-articles, etc.).
+``lemon-publications`` are some utils to create publications-like Django apps
+(news, articles, etc.).
