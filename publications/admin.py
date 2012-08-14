@@ -1,10 +1,15 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from lemon import extradmin
+
+if 'lemon.extradmin' in settings.INSTALLED_APPS:
+    from lemon import extradmin as admin
+else:
+    from django.contrib import admin
 
 
-class PublicationAdmin(extradmin.ModelAdmin):
+class PublicationAdmin(admin.ModelAdmin):
     """Default configuration for admin publications."""
 
     actions = ['make_enabled', 'make_disabled']
