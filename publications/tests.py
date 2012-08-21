@@ -1,7 +1,7 @@
 from django.db import models
 from django.test import TestCase, RequestFactory
 
-from lemon.extradmin import AdminSite
+from lemon import AdminSite
 
 from .admin import PublicationAdmin
 from .models import Publication

@@ -16,7 +16,7 @@ ROOT_URLCONF = 'tests.urls'
 SECRET_KEY = 'secret key'
 
 INSTALLED_APPS = (
-    'lemon.extradmin',
+    'lemon',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
