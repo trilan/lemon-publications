@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -26,11 +26,23 @@ class PublicationAdmin(admin.ModelAdmin):
     list_filter = ('enabled', 'publication_start_date')
     list_per_page = 25
 
+    def get_author_admin_url(self, author):
+        app_name = author._meta.app_name
+        module_name = author._meta.module_name
+        view_name = u'admin:{0}_{1}_change'.format(app_name, module_name)
+        try:
+            return reverse(view_name, args=(author.pk,))
+        except NoReverseMatch:
+            return ''
+
     def author_name(self, obj):
         """Show author full name and link to author's admin change page."""
-        url = reverse('admin:auth_user_change', args=(obj.author.pk,))
-        name = obj.author.get_full_name() or obj.author.username
-        return u'<a href="%s">%s</a>' % (url, name)
+        url = self.get_author_admin_url(obj.author)
+        name = obj.author.get_full_name() or obj.author.get_username()
+        if url:
+            return u'<a href="%s">%s</a>' % (url, name)
+        else:
+            return name
     author_name.short_description = _('author name')
     author_name.allow_tags = True
     author_name.admin_order_field = 'author'

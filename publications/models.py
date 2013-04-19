@@ -1,16 +1,19 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from .managers import PublicationManager
 
 
+USER_MODEL_PATH = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
+
 class Publication(models.Model):
     """This abstract model provides publication-specific fields and tools."""
 
     author = models.ForeignKey(
-        to=User,
+        to=USER_MODEL_PATH,
         null=True,
         editable=False,
         verbose_name=_('author'),
