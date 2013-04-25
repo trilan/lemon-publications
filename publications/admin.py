@@ -27,9 +27,9 @@ class PublicationAdmin(admin.ModelAdmin):
     list_per_page = 25
 
     def get_author_admin_url(self, author):
-        app_name = author._meta.app_name
+        app_label = author._meta.app_label
         module_name = author._meta.module_name
-        view_name = u'admin:{0}_{1}_change'.format(app_name, module_name)
+        view_name = u'admin:{0}_{1}_change'.format(app_label, module_name)
         try:
             return reverse(view_name, args=(author.pk,))
         except NoReverseMatch:
